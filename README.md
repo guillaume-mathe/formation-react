@@ -7,7 +7,7 @@ https://miragejs.com/
 
 #### Material-UI:
 https://material-ui.com/
-##### Material=UI Datepickers:
+##### Material-UI Datepickers:
 https://material-ui-pickers.dev/getting-started/usage
 
 #### Formik:
