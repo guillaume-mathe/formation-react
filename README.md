@@ -1,6 +1,33 @@
-# Getting Started with Create React FormulaireTache
+# Demo formation React + Formik + Redux + Material UI
 
-This project was bootstrapped with [Create React FormulaireTache](https://github.com/facebook/create-react-app).
+## Liens utiles
+
+#### MirageJS:
+https://miragejs.com/
+
+#### Material-UI:
+https://material-ui.com/
+##### Material=UI Datepickers:
+https://material-ui-pickers.dev/getting-started/usage
+
+#### Formik:
+https://formik.org/
+
+https://stackworx.github.io/formik-material-ui/
+
+#### Yup (schémas de validation):
+https://github.com/jquense/yup
+
+#### XState (machines à états):
+https://xstate.js.org/
+
+https://github.com/davidkpiano/xstate
+
+https://xstate.js.org/viz/
+##### Démo XState:
+https://codesandbox.io/s/xstate-react-template-3t2tg?file=/src/index.js
+##### Intégration React (donne le hook `useMachine()`):
+https://github.com/davidkpiano/xstate/tree/master/packages/xstate-react
 
 ## Available Scripts
 
