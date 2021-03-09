@@ -1,0 +1,15 @@
+#task-form {
+  width: 250px;
+  height: 200px;
+  margin: 5em auto;
+  padding: 1em;
+  background-color: #dee;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-content: flex-start;
+  align-items: stretch;
+}
