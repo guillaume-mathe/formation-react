@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter} from "react-router-dom";
+import {Route} from "react-router";
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import 'fontsource-roboto';
 import {makeServer} from "./mirage";
-import {MuiPickersUtilsProvider} from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
-import chLocale from "date-fns/locale/fr-CH";
 import TodoList from "./todoList";
-import FormulaireTache from "./formulaireTache";
+import store from "./store";
+import {Provider} from "react-redux";
 
 /* MirageJS en dev local */
 if (process.env.NODE_ENV === "development") {
@@ -17,9 +17,11 @@ if (process.env.NODE_ENV === "development") {
 }
 
 ReactDOM.render(
-    <MuiPickersUtilsProvider utils={DateFnsUtils} locale={chLocale}>
-        <TodoList />
-    </MuiPickersUtilsProvider>,
+    <Provider store={store}>
+        <BrowserRouter initialEntries={['/']} initialIndex={0}>
+            <Route path="/" component={TodoList}/>
+        </BrowserRouter>
+    </Provider>,
   document.getElementById('root')
 );
 

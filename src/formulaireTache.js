@@ -1,59 +1,19 @@
-import React, {useState} from "react";
-import {Formik, Form, Field, useFormik} from 'formik';
-import {Button, CircularProgress} from '@material-ui/core';
-import {fieldToTextField, TextField} from 'formik-material-ui';
-import {MuiPickersUtilsProvider, KeyboardDatePicker} from '@material-ui/pickers';
+import React from "react";
+import {Formik, Form, Field} from 'formik';
+import {Button, CircularProgress, Typography} from '@material-ui/core';
+import {TextField} from 'formik-material-ui';
+import {MuiPickersUtilsProvider} from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import chLocale from "date-fns/locale/fr-CH";
 import {API_NAMESPACE} from "./mirage";
-import MuiTextField from '@material-ui/core/TextField';
 import * as Yup from 'yup';
+import CustomDatePicker from "./formComponents/CustomDatePicker";
+import UpperCasingTextField from "./formComponents/UpperCasingTextField";
+import {useDispatch} from "react-redux";
 import './formulaireTache.scss';
 
-function UpperCasingTextField(props) {
-    const {
-        form: { setFieldValue },
-        field: { name }
-    } = props;
-    const onChange = React.useCallback(
-        event => {
-            const { value } = event.target;
-            setFieldValue(name, value?.toUpperCase());
-        },
-        [setFieldValue, name]
-    );
-    return <MuiTextField {...fieldToTextField(props)} onChange={onChange} />;
-}
-
-function CustomDatePicker(props) {
-    const [open, setOpen] = useState(false);
-    const {
-        form: { setFieldValue },
-        field: { name }
-    } = props;
-
-    const onChange = React.useCallback(
-        newDate => {
-            setFieldValue(name, newDate);
-            setOpen(false);
-        },
-        [setFieldValue, name]
-    );
-    const onClick = () => {
-        setOpen(!open);
-    }
-
-    return <KeyboardDatePicker
-        {...fieldToTextField(props)}
-        onChange={onChange}
-        onClick={onClick}
-        variant="inline"
-        open={open}
-        format="dd.MM.yyyy"
-    />;
-}
-
 export default function FormulaireTache() {
+    const dispatch = useDispatch();
 
     const maValidation = Yup.object({
         nom: Yup.string()
@@ -68,12 +28,14 @@ export default function FormulaireTache() {
     };
 
     const postFormulaire = (values, {setSubmitting}) => {
+        dispatch({type: "todo/post"});
         fetch(API_NAMESPACE+"/tache", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({...values, done: false})})
             .then(() => {
                 setSubmitting(false);
+                dispatch({type: "todo/post/ok"});
             })
     };
 
